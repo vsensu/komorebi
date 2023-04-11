@@ -1,3 +1,6 @@
+use komorebi::app;
+
 fn main() {
-    println!("hello komorebi");
+    let app = app::App::new();
+    app.run();
 }
