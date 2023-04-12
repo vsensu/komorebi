@@ -2,6 +2,9 @@
 name = "komorebi"
 version = "0.1.0"
 edition = "2021"
+description = "The few streaks of light hitting the grass through the branches of a leafy tree."
+license = "MIT OR Apache-2.0"
+keywords = ["komorebi"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
