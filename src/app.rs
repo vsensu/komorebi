@@ -9,7 +9,7 @@ pub struct App {
 impl App {
     pub fn new() -> App {
         App {
-            world: ecs::World {},
+            world: ecs::World::new(),
             window: window::Window::new(),
         }
     }
