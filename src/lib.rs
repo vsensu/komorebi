@@ -1,5 +1,6 @@
-pub mod app;
-pub mod core;
-pub mod ecs;
-pub mod storage;
-pub mod window;
+/// `use komorebi::prelude::*;` to import common modules
+pub mod prelude;
+
+pub mod core {
+    pub use komorebi_core::*;
+}

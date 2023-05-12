@@ -5,9 +5,19 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[dependencies]
-winit = "0.28"
-
 # Enable a small amount of optimization in debug mode
 [profile.dev]
 opt-level = 1
+
+[workspace]
+members = [
+    "crates/*",
+]
+
+[dependencies]
+komorebi_core = { path = "crates/komorebi_core", version = "0.1.0" }
+komorebi_ecs = { path = "crates/komorebi_ecs", version = "0.1.0" }
+
+[[example]]
+name = "empty"
+path = "examples/app/empty.rs"

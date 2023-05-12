@@ -298,8 +298,20 @@ dependencies = [
 name = "komorebi"
 version = "0.1.0"
 dependencies = [
+ "komorebi_core",
+ "komorebi_ecs",
+]
+
+[[package]]
+name = "komorebi_core"
+version = "0.1.0"
+dependencies = [
  "winit",
 ]
+
+[[package]]
+name = "komorebi_ecs"
+version = "0.1.0"
 
 [[package]]
 name = "lazy_static"

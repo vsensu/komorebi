@@ -1,15 +1,12 @@
-use crate::ecs;
 use crate::window;
 
 pub struct App {
-    pub world: ecs::World,
     pub window: window::Window,
 }
 
 impl App {
     pub fn new() -> App {
         App {
-            world: ecs::World::new(),
             window: window::Window::new(),
         }
     }
