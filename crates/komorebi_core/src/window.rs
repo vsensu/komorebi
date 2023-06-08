@@ -1,3 +1,4 @@
+use tracing::{info, warn};
 use winit::{
     event::{Event, WindowEvent},
     event_loop::{ControlFlow, EventLoop},
@@ -15,13 +16,14 @@ impl Window {
         cfg_if::cfg_if! {
             if #[cfg(target_arch = "wasm32")] {
                 console_error_panic_hook::set_once();
-                console_log::init_with_level(log::Level::Warn).expect("Couldn't initialize logger");
-                log::warn!("wasm32 works!");
+                tracing_wasm::set_as_global_default();
+                warn!("wasm32 works!");
                 // panic!("test panic!");
             } else {
-                env_logger::init();
+                tracing_subscriber::fmt::init();
             }
         }
+        info!("info!!");
         let event_loop = EventLoop::new();
         let window = WindowBuilder::new().build(&event_loop).unwrap();
         #[cfg(target_arch = "wasm32")]
@@ -30,7 +32,7 @@ impl Window {
             // the size manually when on web.
             use winit::dpi::PhysicalSize;
             window.set_inner_size(PhysicalSize::new(600, 400));
-            log::warn!("set window size!");
+            warn!("set window size!");
 
             use winit::platform::web::WindowExtWebSys;
             web_sys::window()
