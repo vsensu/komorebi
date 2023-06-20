@@ -13,6 +13,7 @@ tracing = "0.1"
 tracing-subscriber = { version="0.3", features=["time"] }
 pollster = "0.2"
 bytemuck = { version = "1.12", features = [ "derive" ] }
+cgmath = "0.18"
 
 [dependencies.image]
 version = "0.24"
