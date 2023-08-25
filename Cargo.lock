@@ -690,29 +690,34 @@ dependencies = [
 name = "komorebi"
 version = "0.1.0"
 dependencies = [
+ "komorebi_app",
  "komorebi_core",
  "komorebi_ecs",
+ "komorebi_render",
+ "komorebi_utils",
+ "komorebi_window",
+]
+
+[[package]]
+name = "komorebi_app"
+version = "0.1.0"
+dependencies = [
+ "komorebi_utils",
 ]
 
 [[package]]
 name = "komorebi_core"
 version = "0.1.0"
 dependencies = [
- "bytemuck",
- "cfg-if",
- "cgmath",
  "console_error_panic_hook",
  "console_log",
- "image",
- "pollster",
- "tracing",
- "tracing-subscriber",
+ "komorebi_app",
+ "komorebi_utils",
  "tracing-wasm",
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",
  "wgpu",
- "winit",
 ]
 
 [[package]]
@@ -722,6 +727,36 @@ dependencies = [
  "downcast-rs",
  "fxhash",
  "hibitset",
+]
+
+[[package]]
+name = "komorebi_render"
+version = "0.1.0"
+dependencies = [
+ "bytemuck",
+ "cgmath",
+ "image",
+ "komorebi_utils",
+ "wgpu",
+ "winit",
+]
+
+[[package]]
+name = "komorebi_utils"
+version = "0.1.0"
+dependencies = [
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
+name = "komorebi_window"
+version = "0.1.0"
+dependencies = [
+ "cfg-if",
+ "komorebi_utils",
+ "pollster",
+ "winit",
 ]
 
 [[package]]

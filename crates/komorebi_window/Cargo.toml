@@ -1,11 +1,15 @@
 [package]
-name = "komorebi_ecs"
+name = "komorebi_window"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-hibitset = "0.6.2"
-fxhash = "0.2.1"
-downcast-rs = "1.1.1"
+# komorebi
+komorebi_utils = { path = "../komorebi_utils", version = "0.1.0" }
+
+# other
+winit = "0.28"
+pollster = "0.2"
+cfg-if = "1"

@@ -1,11 +1,11 @@
 [package]
-name = "komorebi_ecs"
+name = "komorebi_utils"
 version = "0.1.0"
 edition = "2021"
+description = "A collection of utils for Komorebi Engine"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-hibitset = "0.6.2"
-fxhash = "0.2.1"
-downcast-rs = "1.1.1"
+tracing = "0.1"
+tracing-subscriber = { version="0.3", features=["time"] }
