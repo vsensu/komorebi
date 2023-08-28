@@ -702,6 +702,7 @@ dependencies = [
 name = "komorebi_app"
 version = "0.1.0"
 dependencies = [
+ "downcast-rs",
  "komorebi_utils",
 ]
 
@@ -754,6 +755,7 @@ name = "komorebi_window"
 version = "0.1.0"
 dependencies = [
  "cfg-if",
+ "komorebi_app",
  "komorebi_utils",
  "pollster",
  "winit",

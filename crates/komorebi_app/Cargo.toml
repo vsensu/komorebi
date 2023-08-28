@@ -8,3 +8,6 @@ edition = "2021"
 [dependencies]
 # komorebi
 komorebi_utils = { path = "../komorebi_utils", version = "0.1.0" }
+
+# other
+downcast-rs = "1.2.0"

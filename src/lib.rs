@@ -1,6 +1,9 @@
 /// `use komorebi::prelude::*;` to import common modules
 pub mod prelude;
 
+mod default_plugins;
+pub use default_plugins::*;
+
 pub mod app {
     pub use komorebi_app::*;
 }

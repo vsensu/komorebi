@@ -28,3 +28,7 @@ komorebi_window= { path = "crates/komorebi_window", version = "0.1.0" }
 [[example]]
 name = "empty"
 path = "examples/app/empty.rs"
+
+[[example]]
+name = "empty_defaults"
+path = "examples/app/empty_defaults.rs"
