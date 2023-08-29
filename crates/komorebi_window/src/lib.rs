@@ -1,5 +1,3 @@
-mod window;
-
 pub mod prelude {}
 
 use komorebi_app::prelude::*;

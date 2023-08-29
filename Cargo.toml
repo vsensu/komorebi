@@ -24,6 +24,7 @@ komorebi_ecs = { path = "crates/komorebi_ecs", version = "0.1.0" }
 komorebi_render = { path = "crates/komorebi_render", version = "0.1.0" }
 komorebi_utils= { path = "crates/komorebi_utils", version = "0.1.0" }
 komorebi_window= { path = "crates/komorebi_window", version = "0.1.0" }
+komorebi_winit = { path = "crates/komorebi_winit", version = "0.1.0" }
 
 [[example]]
 name = "empty"

@@ -696,6 +696,7 @@ dependencies = [
  "komorebi_render",
  "komorebi_utils",
  "komorebi_window",
+ "komorebi_winit",
 ]
 
 [[package]]
@@ -754,9 +755,18 @@ dependencies = [
 name = "komorebi_window"
 version = "0.1.0"
 dependencies = [
+ "komorebi_app",
+ "komorebi_utils",
+]
+
+[[package]]
+name = "komorebi_winit"
+version = "0.1.0"
+dependencies = [
  "cfg-if",
  "komorebi_app",
  "komorebi_utils",
+ "komorebi_window",
  "pollster",
  "winit",
 ]

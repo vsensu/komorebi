@@ -1,5 +1,5 @@
 [package]
-name = "komorebi_window"
+name = "komorebi_winit"
 version = "0.1.0"
 edition = "2021"
 
@@ -9,3 +9,9 @@ edition = "2021"
 # komorebi
 komorebi_app = { path = "../komorebi_app", version = "0.1.0" }
 komorebi_utils = { path = "../komorebi_utils", version = "0.1.0" }
+komorebi_window= { path = "../komorebi_window", version = "0.1.0" }
+
+# other
+winit = "0.28"
+pollster = "0.2"
+cfg-if = "1"
