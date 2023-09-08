@@ -2,6 +2,9 @@ mod storage;
 
 pub use storage::*;
 
+pub mod component;
+pub mod world;
+
 use std::any::{type_name, TypeId};
 use std::sync::Mutex;
 
@@ -194,4 +197,6 @@ mod tests {
     }
 }
 
-pub mod prelude {}
+pub mod prelude {
+    pub use crate::world::World;
+}

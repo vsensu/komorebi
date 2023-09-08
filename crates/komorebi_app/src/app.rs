@@ -6,13 +6,11 @@ use std::{
 // use crate::window;
 use crate::{Plugin, Plugins};
 
+use komorebi_ecs::prelude::*;
 use komorebi_utils::tracing::debug;
 
-pub(crate) enum AppError {
-    DuplicatePlugin { plugin_name: String },
-}
-
 pub struct App {
+    pub world: World,
     // pub window: window::Window,
     plugin_registry: Vec<Box<dyn Plugin>>,
     plugin_name_added: HashSet<String>,
@@ -20,18 +18,24 @@ pub struct App {
     building_plugin_depth: usize,
 }
 
-// Dummy plugin used to temporary hold the place in the plugin registry
-struct PlaceholderPlugin;
-impl Plugin for PlaceholderPlugin {
-    fn build(&self, _app: &mut App) {}
+impl Default for App {
+    fn default() -> Self {
+        let mut app = App::empty();
+        app
+    }
 }
 
 impl App {
-    pub fn new() -> App {
-        App {
+    pub fn new() -> Self {
+        App::default()
+    }
+
+    pub fn empty() -> Self {
+        Self {
+            world: World::new(),
             // window: window::Window::new(),
-            plugin_registry: Default::default(),
-            plugin_name_added: Default::default(),
+            plugin_registry: Vec::new(),
+            plugin_name_added: HashSet::new(),
             building_plugin_depth: 0,
         }
     }
@@ -69,12 +73,20 @@ impl App {
         plugins.add_to_app(self);
         self
     }
+
+    pub fn insert_non_send_resource<R: 'static>(&mut self, resource: R) -> &mut Self {
+        self.world.in
+    }
 }
 
-impl Default for App {
-    fn default() -> Self {
-        Self::new()
-    }
+pub(crate) enum AppError {
+    DuplicatePlugin { plugin_name: String },
+}
+
+// Dummy plugin used to temporary hold the place in the plugin registry
+struct PlaceholderPlugin;
+impl Plugin for PlaceholderPlugin {
+    fn build(&self, _app: &mut App) {}
 }
 
 #[cfg(test)]

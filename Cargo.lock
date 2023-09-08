@@ -704,6 +704,7 @@ name = "komorebi_app"
 version = "0.1.0"
 dependencies = [
  "downcast-rs",
+ "komorebi_ecs",
  "komorebi_utils",
 ]
 
