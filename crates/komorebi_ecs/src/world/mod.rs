@@ -1,3 +1,5 @@
+use std::mem::ManuallyDrop;
+
 use crate::component::Components;
 
 pub struct World {
@@ -18,6 +20,7 @@ impl World {
     }
 
     pub fn insert_non_send_resource<R: 'static>(&mut self, resource: R) {
-        let component_id = self.components.init_non_send::<R>();
+        // let component_id = self.components.init_non_send::<R>();
+        // TODO: insert resource
     }
 }

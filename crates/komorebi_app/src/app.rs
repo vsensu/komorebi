@@ -75,7 +75,8 @@ impl App {
     }
 
     pub fn insert_non_send_resource<R: 'static>(&mut self, resource: R) -> &mut Self {
-        self.world.in
+        self.world.insert_non_send_resource(resource);
+        self
     }
 }
 
