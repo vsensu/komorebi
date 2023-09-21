@@ -6,7 +6,10 @@ use std::{
 // use crate::window;
 use crate::{Plugin, Plugins};
 
-use komorebi_ecs::{prelude::*, world::IntoSystem};
+use komorebi_ecs::{
+    prelude::*,
+    world::{IntoSystem, SystemParam},
+};
 use komorebi_utils::tracing::debug;
 
 pub struct App {
@@ -79,7 +82,7 @@ impl App {
         self
     }
 
-    pub fn add_system<F: IntoSystem<P> + 'static, P>(&mut self, system: F) -> &mut Self {
+    pub fn add_system<F: IntoSystem<P>, P: SystemParam>(&mut self, system: F) -> &mut Self {
         self.world.add_system(system);
         self
     }

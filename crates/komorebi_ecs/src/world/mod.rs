@@ -28,7 +28,8 @@ impl World {
 
     pub fn add_system<F, P>(&mut self, system: F)
     where
-        F: IntoSystem<P> + 'static,
+        F: IntoSystem<P>,
+        P: SystemParam,
     {
         self.systems.push(Box::new(system.into_system()));
     }
@@ -44,25 +45,27 @@ pub trait System: 'static {
     fn run(&mut self);
 }
 
-trait ParamSystem<Param>: 'static {
+trait ParamSystem<Params>: 'static {
     fn run(&mut self);
 }
 
-pub struct SystemWrapper<F: 'static, P> {
+pub trait SystemParam: 'static {}
+
+pub struct SystemWrapper<F: 'static, Params: SystemParam> {
     func: F,
-    _phantom: std::marker::PhantomData<P>,
+    _phantom: std::marker::PhantomData<Params>,
 }
 
-pub trait IntoSystem<Param> {
+pub trait IntoSystem<Params> {
     type Output: System;
     fn into_system(self) -> Self::Output;
 }
 
-impl<F, Param: 'static> IntoSystem<Param> for F
+impl<F, Params: SystemParam> IntoSystem<Params> for F
 where
-    F: ParamSystem<Param>,
+    F: ParamSystem<Params>,
 {
-    type Output = SystemWrapper<F, Param>;
+    type Output = SystemWrapper<F, Params>;
     fn into_system(self) -> Self::Output {
         SystemWrapper {
             func: self,
@@ -71,15 +74,16 @@ where
     }
 }
 
-impl<F, P: 'static> System for SystemWrapper<F, P>
+impl<F, Params: SystemParam> System for SystemWrapper<F, Params>
 where
-    F: ParamSystem<P>,
+    F: ParamSystem<Params>,
 {
     fn run(&mut self) {
         ParamSystem::run(&mut self.func);
     }
 }
 
+// -------------------- closure to ParamSystem begin --------------------
 impl<F> ParamSystem<()> for F
 where
     F: Fn() + 'static,
@@ -98,3 +102,11 @@ where
         self(P1::default());
     }
 }
+
+// -------------------- closure to ParamSystem end --------------------
+
+// -------------------- param to SystemParam begin --------------------
+impl SystemParam for () {}
+
+impl<T: 'static> SystemParam for (T,) {}
+// -------------------- param to SystemParam end --------------------
