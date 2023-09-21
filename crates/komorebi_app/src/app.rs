@@ -6,7 +6,7 @@ use std::{
 // use crate::window;
 use crate::{Plugin, Plugins};
 
-use komorebi_ecs::prelude::*;
+use komorebi_ecs::{prelude::*, world::IntoSystem};
 use komorebi_utils::tracing::debug;
 
 pub struct App {
@@ -40,9 +40,9 @@ impl App {
         }
     }
 
-    pub fn run(&self) {
+    pub fn run(&mut self) {
         println!("hello komorebi");
-        // self.window.run();
+        self.world.run();
     }
 
     pub(crate) fn add_boxed_plugin(
@@ -76,6 +76,11 @@ impl App {
 
     pub fn insert_non_send_resource<R: 'static>(&mut self, resource: R) -> &mut Self {
         self.world.insert_non_send_resource(resource);
+        self
+    }
+
+    pub fn add_system<F: IntoSystem<P> + 'static, P>(&mut self, system: F) -> &mut Self {
+        self.world.add_system(system);
         self
     }
 }

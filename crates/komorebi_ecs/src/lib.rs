@@ -198,5 +198,6 @@ mod tests {
 }
 
 pub mod prelude {
+    pub use crate::world::System;
     pub use crate::world::World;
 }
